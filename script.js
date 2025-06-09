@@ -688,12 +688,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const contactCards = document.querySelectorAll('.contact-card');
                 const footer = document.querySelector('.footer');
                 
-                if (hero) hero.style.color = '#ffffff';
+                // Removed: if (hero) hero.style.color = '#ffffff'; // Let CSS handle hero text color
+                // Ensure hero text color is not forced to white if it needs to be dark based on CSS variables
+                if (hero) {
+                    // Clearing direct style to allow CSS to take full control,
+                    // or set to a variable-based color if necessary.
+                    // For now, let's rely on CSS. If issues persist, this might need:
+                    // hero.style.color = getComputedStyle(document.body).getPropertyValue('--text-dark');
+                }
+
                 contactCards.forEach(card => {
                     card.style.backgroundColor = '#f9fafb';
                     card.style.color = '#2d3748';
                 });
-                if (footer) footer.style.color = '#2d3748';
+                // Removed: if (footer) footer.style.color = '#2d3748'; // Let CSS handle footer text color
+                // Ensure footer text color is not forced to dark if it needs to be light based on CSS variables
+                if (footer) {
+                    // Clearing direct style to allow CSS to take full control.
+                    // Footer CSS sets color: var(--white) which is #fff in light mode on a dark bg.
+                    // The JS override to #2d3748 was incorrect.
+                }
                 
                 console.log('☀️ Light mode activated with enhanced visibility');
             }
