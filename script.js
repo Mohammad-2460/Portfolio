@@ -591,6 +591,60 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // ==========================================
+    // DARK/LIGHT MODE DETECTION & MANAGEMENT
+    // ==========================================
+
+    // Function to detect and handle theme changes
+    function initializeThemeDetection() {
+        // Check for system preference
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Log initial theme preference
+        console.log(`🎨 System theme preference: ${mediaQuery.matches ? 'Dark' : 'Light'} mode`);
+        
+        // Apply theme-specific optimizations
+        function applyThemeOptimizations(isDark) {
+            const body = document.body;
+            
+            if (isDark) {
+                body.setAttribute('data-theme', 'dark');
+                console.log('🌙 Dark mode activated');
+            } else {
+                body.setAttribute('data-theme', 'light');
+                console.log('☀️ Light mode activated');
+            }
+            
+            // Optimize animations for dark mode
+            const floatingShapes = document.querySelectorAll('.floating-shapes .shape');
+            floatingShapes.forEach(shape => {
+                if (isDark) {
+                    shape.style.opacity = '0.1';
+                } else {
+                    shape.style.opacity = '0.6';
+                }
+            });
+        }
+        
+        // Apply initial theme
+        applyThemeOptimizations(mediaQuery.matches);
+        
+        // Listen for theme changes
+        mediaQuery.addEventListener('change', (e) => {
+            console.log(`🎨 Theme changed to: ${e.matches ? 'Dark' : 'Light'} mode`);
+            applyThemeOptimizations(e.matches);
+            
+            // Add smooth transition class temporarily
+            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 300);
+        });
+    }
+
+    // Initialize theme detection
+    initializeThemeDetection();
+
     // Initialize mobile optimizations
     if (window.innerWidth <= 768) {
         optimizeForMobile();
@@ -654,3 +708,56 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// ==========================================
+// MOBILE CONTACT SECTION OPTIMIZATIONS
+// ==========================================
+
+function initializeMobileContactOptimizations() {
+    // Ensure contact section is properly sized on mobile
+    function adjustContactSectionHeight() {
+        const contactSection = document.querySelector('#contact');
+        const contactContent = document.querySelector('.contact-content');
+        
+        if (contactSection && window.innerWidth <= 768) {
+            // Add mobile-specific class
+            contactSection.classList.add('mobile-optimized');
+            
+            // Ensure proper spacing
+            contactContent.style.minHeight = 'auto';
+            contactContent.style.paddingBottom = '2rem';
+        } else if (contactSection) {
+            contactSection.classList.remove('mobile-optimized');
+        }
+    }
+    
+    // Handle mobile form field focus to prevent zoom
+    const formInputs = document.querySelectorAll('.contact-form input, .contact-form textarea, .contact-form select');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            if (window.innerWidth <= 768) {
+                // Prevent iOS zoom by ensuring 16px font size
+                input.style.fontSize = '16px';
+            }
+        });
+        
+        input.addEventListener('blur', () => {
+            // Reset font size after blur
+            input.style.fontSize = '';
+        });
+    });
+    
+    // Adjust contact section on orientation change
+    window.addEventListener('orientationchange', () => {
+        setTimeout(adjustContactSectionHeight, 500);
+    });
+    
+    // Initial adjustment
+    adjustContactSectionHeight();
+    
+    // Adjust on window resize
+    window.addEventListener('resize', adjustContactSectionHeight);
+}
+
+// Initialize mobile contact optimizations
+initializeMobileContactOptimizations();
