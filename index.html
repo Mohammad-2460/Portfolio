@@ -38,7 +38,6 @@
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
                 <li class="nav-item"><a href="#portfolio" class="nav-link">Portfolio</a></li>
-              <!---  <li class="nav-item"><a href="#testimonials" class="nav-link">Reviews</a></li> -->
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             
@@ -246,17 +245,18 @@
                         </div>
                     </div>
                     
-                    <!-- Using GitHub-hosted file -->
-<div class="about-buttons">
-    <a href="#contact" class="btn btn-primary">Let's Connect</a>
-    <a href="./assets/Mohammad_Resume.pdf" 
-       class="btn btn-outline" 
-       target="_blank" 
-       download="Mohammad_Resume.pdf">
-        <span>Download Resume</span>
-        <i class="fas fa-download"></i>
-    </a>
-</div>
+                    <!-- FIXED: Action Buttons with Working Download -->
+                    <div class="about-buttons">
+                        <a href="#contact" class="btn btn-primary">Let's Connect</a>
+                        <a href="#" class="btn btn-outline" id="download-resume">
+                            <span>Download Resume</span>
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Services Section - What I Offer -->
     <section id="services" class="services">
@@ -493,101 +493,6 @@
             </div>
         </div>
     </section>
-
-   <!-- Testimonials Section - Client Reviews --
-    <section id="testimonials" class="testimonials">
-        <div class="container">
-            <!-- Section Header --
-            <div class="section-header" data-aos="fade-up">
-                <span class="section-tag">Learning Feedback</span>
-                <h2 class="section-title">Workshop Reviews</h2>
-                <p class="section-subtitle">Feedback from instructors and peers during my learning journey</p>
-            </div>
-            
-            <!-- Testimonials Slider --
-            <div class="testimonials-slider" data-aos="fade-up" data-aos-delay="200">
-                <!-- Testimonial 1 --
-                <div class="testimonial-item active">
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Mohammad showed great enthusiasm and quick learning ability during our UI/UX workshop. His questions were thoughtful and demonstrated genuine interest in user-centered design principles."</p>
-                        <div class="testimonial-author">
-                            <div class="author-image">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8xXzEpIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMjUiIHI9IjEwIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIwIDQ1QzIwIDM4LjM3MjYgMjUuMzcyNiAzMyAzMiAzM0gzMkMzOC42Mjc0IDMzIDQ0IDM4LjM3MjYgNDQgNDVWNTBIMjBWNDVaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8xXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjYwIiB5Mj0iNjAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzY2N0VFQSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM3NjRCQTIiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K" alt="Workshop Instructor">
-                            </div>
-                            <div class="author-info">
-                                <h4>Dr. Priya Sharma</h4>
-                                <span>UI/UX Workshop Instructor, IIT Roorkee</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 --
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"During our hackathon, Mohammad's design approach was methodical and user-focused. He collaborated well with the team and delivered a clean, functional app design under tight deadlines."</p>
-                        <div class="testimonial-author">
-                            <div class="author-image">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8yXzEpIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMjUiIHI9IjEwIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIwIDQ1QzIwIDM4LjM3MjYgMjUuMzcyNiAzMyAzMiAzM0gzMkMzOC42Mjc0IDMzIDQ0IDM4LjM3MjYgNDQgNDVWNTBIMjBWNDVaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8yXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjYwIiB5Mj0iNjAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0Y5M0ZCIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0Y1NTc2QyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Team Member">
-                            </div>
-                            <div class="author-info">
-                                <h4>Rahul Verma</h4>
-                                <span>Hackathon Team Lead</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 --
-                <div class="testimonial-item">
-                    <div class="testimonial-content">
-                        <div class="testimonial-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <p>"Mohammad's dedication to learning design principles is evident in his work. He actively seeks feedback and implements suggestions effectively. Great potential for growth in the design field."</p>
-                        <div class="testimonial-author">
-                            <div class="author-image">
-                                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMzAiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8zXzEpIi8+CjxjaXJjbGUgY3g9IjMwIiBjeT0iMjUiIHI9IjEwIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPHBhdGggZD0iTTIwIDQ1QzIwIDM4LjM3MjYgMjUuMzcyNiAzMyAzMiAzM0gzMkMzOC42Mjc0IDMzIDQ0IDM4LjM3MjYgNDQgNDVWNTBIMjBWNDVaIiBmaWxsPSJ3aGl0ZSIgZmlsbC1vcGFjaXR5PSIwLjQiLz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQwX2xpbmVhcl8zXzEiIHgxPSIwIiB5MT0iMCIgeDI9IjYwIiB5Mj0iNjAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzRGQUNGRSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMEYyRkUiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K" alt="Peer Review">
-                            </div>
-                            <div class="author-info">
-                                <h4>Sneha Agarwal</h4>
-                                <span>Fellow Design Student</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Slider Controls --
-                <div class="slider-controls">
-                    <button class="slider-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <div class="slider-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="slider-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-    </section> 
 
     <!-- Contact Section - Get In Touch -->
     <section id="contact" class="contact">
