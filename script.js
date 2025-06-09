@@ -521,11 +521,62 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mobile-specific optimizations
     function optimizeForMobile() {
+        console.log('📱 Optimizing for mobile device...');
+        
         // Disable pull-to-refresh on mobile browsers
         document.body.style.overscrollBehavior = 'none';
         
         // Improve scrolling performance on mobile
         document.documentElement.style.webkitOverflowScrolling = 'touch';
+        
+        // Optimize contact section for mobile
+        const contactContent = document.querySelector('.contact-content');
+        if (contactContent) {
+            contactContent.style.display = 'block';
+            contactContent.style.width = '100%';
+            contactContent.style.overflow = 'visible';
+            contactContent.style.gridTemplateColumns = '1fr';
+            contactContent.style.gap = '2rem';
+        }
+        
+        // Ensure contact cards are properly sized
+        const contactCards = document.querySelectorAll('.contact-card');
+        contactCards.forEach(card => {
+            card.style.width = '100%';
+            card.style.maxWidth = '100%';
+            card.style.overflow = 'visible';
+            card.style.height = 'auto';
+            card.style.minHeight = 'auto';
+            card.style.padding = '2rem 1.5rem';
+        });
+        
+        // Optimize contact methods for mobile
+        const contactMethods = document.querySelectorAll('.contact-method');
+        contactMethods.forEach(method => {
+            method.style.display = 'flex';
+            method.style.width = '100%';
+            method.style.alignItems = 'flex-start';
+            method.style.padding = '1rem 0';
+            method.style.borderBottom = '1px solid var(--gray-200)';
+        });
+        
+        // Fix text wrapping in contact section
+        const contactTexts = document.querySelectorAll('.contact-card h3, .contact-card p');
+        contactTexts.forEach(text => {
+            text.style.wordWrap = 'break-word';
+            text.style.overflowWrap = 'break-word';
+            text.style.whiteSpace = 'normal';
+            text.style.hyphens = 'auto';
+        });
+        
+        // Ensure footer is properly centered
+        const footerBottom = document.querySelector('.footer-bottom');
+        if (footerBottom) {
+            footerBottom.style.justifyContent = 'center';
+            footerBottom.style.textAlign = 'center';
+            footerBottom.style.flexDirection = 'column';
+            footerBottom.style.alignItems = 'center';
+        }
         
         // Prevent accidental zoom on double tap
         let lastTouchEnd = 0;
@@ -541,6 +592,8 @@ document.addEventListener('DOMContentLoaded', function() {
         window.addEventListener('orientationchange', function() {
             setTimeout(setVHProperty, 100);
         });
+        
+        console.log('✅ Mobile contact and footer optimization complete');
     }
     
     // Enhanced form handling
@@ -595,58 +648,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // DARK/LIGHT MODE DETECTION & MANAGEMENT
     // ==========================================
 
-    // Function to detect and handle theme changes
+    // Force light mode as default
+    document.body.style.backgroundColor = '#ffffff';
+    document.body.style.color = '#2d3748';
+    console.log('🎨 Light mode forced as default');
+
+    // Robust theme detection and application
     function initializeThemeDetection() {
-        // Check for system preference
         const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
         
-        // Log initial theme preference
-        console.log(`🎨 System theme preference: ${mediaQuery.matches ? 'Dark' : 'Light'} mode`);
-        
-        // Apply theme-specific optimizations
-        function applyThemeOptimizations(isDark) {
-            const body = document.body;
+        function applyTheme(isDark) {
+            console.log(`🎨 Applying ${isDark ? 'dark' : 'light'} mode...`);
             
             if (isDark) {
-                body.setAttribute('data-theme', 'dark');
-                body.style.backgroundColor = '#1a202c';
-                body.style.color = '#f7fafc';
-                console.log('🌙 Dark mode activated');
+                document.body.style.backgroundColor = '#1a202c';
+                document.body.style.color = '#f7fafc';
+                document.body.setAttribute('data-theme', 'dark');
+                
+                // Ensure visibility of key elements
+                const hero = document.querySelector('.hero');
+                const contactCards = document.querySelectorAll('.contact-card');
+                const footer = document.querySelector('.footer');
+                
+                if (hero) hero.style.color = '#f7fafc';
+                contactCards.forEach(card => {
+                    card.style.backgroundColor = '#2d3748';
+                    card.style.color = '#f7fafc';
+                });
+                if (footer) footer.style.color = '#f7fafc';
+                
+                console.log('🌙 Dark mode activated with enhanced visibility');
             } else {
-                body.setAttribute('data-theme', 'light');
-                body.style.backgroundColor = '#ffffff';
-                body.style.color = '#2d3748';
-                console.log('☀️ Light mode activated');
+                document.body.style.backgroundColor = '#ffffff';
+                document.body.style.color = '#2d3748';
+                document.body.setAttribute('data-theme', 'light');
+                
+                // Ensure visibility of key elements
+                const hero = document.querySelector('.hero');
+                const contactCards = document.querySelectorAll('.contact-card');
+                const footer = document.querySelector('.footer');
+                
+                if (hero) hero.style.color = '#ffffff';
+                contactCards.forEach(card => {
+                    card.style.backgroundColor = '#f9fafb';
+                    card.style.color = '#2d3748';
+                });
+                if (footer) footer.style.color = '#2d3748';
+                
+                console.log('☀️ Light mode activated with enhanced visibility');
             }
-            
-            // Optimize animations for theme
-            const floatingShapes = document.querySelectorAll('.floating-shapes .shape');
-            floatingShapes.forEach(shape => {
-                if (isDark) {
-                    shape.style.opacity = '0.1';
-                } else {
-                    shape.style.opacity = '0.6';
-                }
-            });
-            
-            // Debug log for verification
-            console.log(`Theme applied: Body BG = ${body.style.backgroundColor}, Color = ${body.style.color}`);
         }
         
         // Apply initial theme
-        applyThemeOptimizations(mediaQuery.matches);
+        applyTheme(mediaQuery.matches);
         
-        // Listen for theme changes
+        // Listen for changes
         mediaQuery.addEventListener('change', (e) => {
-            console.log(`🎨 Theme changed to: ${e.matches ? 'Dark' : 'Light'} mode`);
-            applyThemeOptimizations(e.matches);
-            
-            // Add smooth transition class temporarily
-            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-            setTimeout(() => {
-                document.body.style.transition = '';
-            }, 300);
+            applyTheme(e.matches);
         });
+        
+        // Force refresh of theme after a short delay to ensure all elements are loaded
+        setTimeout(() => {
+            applyTheme(mediaQuery.matches);
+        }, 100);
     }
 
     // Initialize theme detection
