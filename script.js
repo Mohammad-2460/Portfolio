@@ -609,13 +609,17 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (isDark) {
                 body.setAttribute('data-theme', 'dark');
+                body.style.backgroundColor = '#1a202c';
+                body.style.color = '#f7fafc';
                 console.log('🌙 Dark mode activated');
             } else {
                 body.setAttribute('data-theme', 'light');
+                body.style.backgroundColor = '#ffffff';
+                body.style.color = '#2d3748';
                 console.log('☀️ Light mode activated');
             }
             
-            // Optimize animations for dark mode
+            // Optimize animations for theme
             const floatingShapes = document.querySelectorAll('.floating-shapes .shape');
             floatingShapes.forEach(shape => {
                 if (isDark) {
@@ -624,6 +628,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     shape.style.opacity = '0.6';
                 }
             });
+            
+            // Debug log for verification
+            console.log(`Theme applied: Body BG = ${body.style.backgroundColor}, Color = ${body.style.color}`);
         }
         
         // Apply initial theme
